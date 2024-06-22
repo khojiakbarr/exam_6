@@ -1,9 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CardDetailInfo from "../components/CardDetailInfo";
+import { useEffect } from "react";
+import { calcPrice } from "../Store/Slices/ProductSlice";
 
 const CardDetail = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
+  const isShipping = useSelector((state) => state.product.isShipping);
   const selProduct = products.filter((product) => product.isSell == true);
+  useEffect(() => {
+    dispatch(calcPrice());
+  }, [products]);
 
   return (
     <div>
@@ -25,13 +32,12 @@ const CardDetail = () => {
             <h1>Cart Totals</h1>
             <div>
               <div className="cartitems-total-item">
-                <p>Shipping Fee</p>
-                <p>$1000dan oshsa bepul oshmasa $50 boladi</p>
+                {isShipping >= 1000 ? <p>Shipping Fee</p> : <p>Shipping 50$</p>}
               </div>
               <hr />
               <div className="cartitems-total-item">
                 <h3>Total</h3>
-                <h3>$1000</h3>
+                <h3>{isShipping !== NaN ? isShipping : 0}$</h3>
               </div>
             </div>
             <button>PROCCEED TO CHECKOUT</button>

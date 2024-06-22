@@ -10,7 +10,7 @@ const Home = () => {
         <Card
           key={prod.id}
           id={prod.id}
-          image={prod.productImg} 
+          image={prod.productImg}
           title={prod.productName}
           price={prod.productPrice}
           category={prod.productCategory}

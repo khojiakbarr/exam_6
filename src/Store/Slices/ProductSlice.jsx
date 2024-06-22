@@ -17,7 +17,8 @@ const ProductSlice = createSlice({
         count: 1,
       },
     ],
-    isShipping: false,
+    isShipping: 0,
+    mainTotal: [],
   },
   reducers: {
     addProduct: (state, action) => {
@@ -64,10 +65,25 @@ const ProductSlice = createSlice({
         }
       });
     },
+    calcPrice: (state, action) => {
+      state.mainTotal = state.products.map((prod) => {
+        if (prod.isSell) {
+          console.log(prod.productPrice);
+          return prod.productPrice * prod.count;
+        } else {
+          return 0;
+        }
+      });
+      console.log(state.mainTotal);
+
+      state.isShipping = state.mainTotal.reduce((price, currentValue) => {
+        return price + currentValue;
+      }, 0);
+    },
   },
 });
 
-export const { addProduct, editCount, remuveProduct, addSell } =
+export const { addProduct, editCount, remuveProduct, addSell, calcPrice } =
   ProductSlice.actions;
 
 export default ProductSlice.reducer;
