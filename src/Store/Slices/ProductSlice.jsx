@@ -5,17 +5,17 @@ const ProductSlice = createSlice({
   name: "products", // Type Actions
   initialState: {
     products: [
-      {
-        id: 0,
-        productName: "ProductName",
-        productPrice: 120,
-        productDescription: "ProductDescription",
-        productCategory: "ProductCategory",
-        productImg:
-          "https://istyle.hr/media/catalog/product/cache/image/e9c3970ab036de70892d86c6d221abfe/i/p/iphone_15_pink_pdp_image_position-1__en-us_1_1.jpg",
-        isSell: true,
-        count: 1,
-      },
+      // {
+      //   id: 0,
+      //   productName: "ProductName",
+      //   productPrice: 120,
+      //   productDescription: "ProductDescription",
+      //   productCategory: "ProductCategory",
+      //   productImg:
+      //     "https://istyle.hr/media/catalog/product/cache/image/e9c3970ab036de70892d86c6d221abfe/i/p/iphone_15_pink_pdp_image_position-1__en-us_1_1.jpg",
+      //   isSell: true,
+      //   count: 1,
+      // },
     ],
     isShipping: 0,
     mainTotal: [],
