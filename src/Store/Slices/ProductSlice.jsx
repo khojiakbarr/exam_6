@@ -17,6 +17,7 @@ const ProductSlice = createSlice({
         count: 1,
       },
     ],
+    isShipping: false,
   },
   reducers: {
     addProduct: (state, action) => {
@@ -26,29 +27,47 @@ const ProductSlice = createSlice({
       ];
     },
 
-    deliteProduct: (state, action) => {
-      state.products = state.products.filter(
-        (product) => product.id !== action.payload.id
-      );
+    remuveProduct: (state, action) => {
+      state.products = state.products.map((prod) => {
+        if (prod.id === action.payload.id) {
+          return { ...prod, isSell: false, count: 1 };
+        } else {
+          return prod;
+        }
+      });
     },
 
     editCount: (state, action) => {
-      if (action.payload.info == "plus") {
-        state.products = state.products.map((prod) => {
-          if (prod.id == action.payload.id) {
+      state.products = state.products.map((prod) => {
+        if (prod.id == action.payload.id) {
+          if (action.payload.info == "plus") {
             return { ...prod, count: prod.count + 1 };
-          } else {
-            if (prod.count < action.payload.id) {
+          } else if (action.payload.info == "minus") {
+            if (prod.count > 1) {
               return { ...prod, count: prod.count - 1 };
+            } else {
+              return prod;
             }
           }
-        });
-      } else {
-      }
+        } else {
+          return prod;
+        }
+      });
+    },
+
+    addSell: (state, action) => {
+      state.products = state.products.map((prod) => {
+        if (prod.id === action.payload.id) {
+          return { ...prod, isSell: true };
+        } else {
+          return prod;
+        }
+      });
     },
   },
 });
 
-export const { addProduct, editCount, deliteProduct } = ProductSlice.actions;
+export const { addProduct, editCount, remuveProduct, addSell } =
+  ProductSlice.actions;
 
 export default ProductSlice.reducer;

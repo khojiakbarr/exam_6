@@ -1,14 +1,13 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addSell } from "../Store/Slices/ProductSlice";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const products = useSelector((state) => state.product.products);
   const product = products.find((product) => product.id == id); // Replace with the
-  useEffect(() => {
-    console.log(product);
-  }, []);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -34,7 +33,12 @@ const ProductDetail = () => {
                 </h3>
                 <p>{product.productDescription}</p>
                 <div className="ui vertical animated button" tabIndex="0">
-                  <button className="content">Add to Cart</button>
+                  <button
+                    onClick={() => dispatch(addSell({ id: id }))}
+                    className="content"
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             </div>
