@@ -1,5 +1,6 @@
-import { v4 as uuidv4 } from "uuid";
 import remove_icon from "../assets/cart_cross_icon.png";
+
+import { v4 as uuid } from "uuid";
 const CardDetail = () => {
   return (
     <div>
@@ -13,7 +14,7 @@ const CardDetail = () => {
           <p>Remove</p>
         </div>
         <hr />
-        <div key={uuidv4()}>
+        <div key={uuid()}>
           <div className="cartitems-format cartitems-format-main">
             <img
               src="https://istyle.hr/media/catalog/product/cache/image/e9c3970ab036de70892d86c6d221abfe/i/p/iphone_15_pink_pdp_image_position-1__en-us_1_1.jpg"
