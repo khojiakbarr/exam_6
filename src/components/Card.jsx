@@ -1,15 +1,9 @@
 import { Link } from "react-router-dom";
 
-const Card = ({
-  id = 0,
-  image = "https://istyle.hr/media/catalog/product/cache/image/e9c3970ab036de70892d86c6d221abfe/i/p/iphone_15_pink_pdp_image_position-1__en-us_1_1.jpg",
-  title = "Product title",
-  price = 100,
-  category = "technology",
-}) => {
+const Card = ({ id, image, title, price, category }) => {
   return (
     <div className="four wide column" key={id}>
-      <Link to={`/product`}>
+      <Link to={`/${id}`}>
         <div className="ui link cards">
           <div className="card">
             <div className="image">

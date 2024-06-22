@@ -1,4 +1,15 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
 const ProductDetail = () => {
+  const { id } = useParams();
+  const products = useSelector((state) => state.product.products);
+  const product = products.find((product) => product.id == id); // Replace with the
+  useEffect(() => {
+    console.log(product);
+  }, []);
+
   return (
     <>
       <div className="ui grid container">
@@ -9,24 +20,21 @@ const ProductDetail = () => {
               <div className="column lp">
                 <img
                   className="ui fluid image"
-                  src="https://istyle.hr/media/catalog/product/cache/image/e9c3970ab036de70892d86c6d221abfe/i/p/iphone_15_pink_pdp_image_position-1__en-us_1_1.jpg"
+                  src={product.productImg}
                   alt="product"
                 />
               </div>
               <div className="column rp">
-                <h1>Product title</h1>
+                <h1>{product.productName}</h1>
                 <h2>
-                  <h3 className="ui teal tag label">$100</h3>
+                  <h3 className="ui teal tag label">${product.productPrice}</h3>
                 </h2>
-                <h3 className="ui brown block header">technology</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                  animi sequi iste repellat inventore cupiditate voluptatum hic
-                  atque consequatur quod iure, rerum incidunt esse. Aspernatur
-                  quis architecto iste voluptatum ipsam?
-                </p>
+                <h3 className="ui brown block header">
+                  {product.productCategory}
+                </h3>
+                <p>{product.productDescription}</p>
                 <div className="ui vertical animated button" tabIndex="0">
-                  <div className="content">Add to Cart</div>
+                  <button className="content">Add to Cart</button>
                 </div>
               </div>
             </div>
